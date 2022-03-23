@@ -6,24 +6,25 @@ import com.noahbres.meepmeep.MeepMeep;
 import com.noahbres.meepmeep.roadrunner.DefaultBotBuilder;
 import com.noahbres.meepmeep.roadrunner.entity.RoadRunnerBotEntity;
 
-public class MeepMeepTesting {
-    public static void main(String[] args) {
-        MeepMeep meepMeep = new MeepMeep(800);
+import java.util.Vector;
 
-        RoadRunnerBotEntity myBot = new DefaultBotBuilder(meepMeep)
+public class TrajectoriesTest {
+    public static void main(String[] args) {
+        MeepMeep mm = new MeepMeep(800);
+        RoadRunnerBotEntity myBot = new DefaultBotBuilder(mm)
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
                 .followTrajectorySequence(drive ->
-                        drive.trajectorySequenceBuilder(new Pose2d(-34, 65, 0))
-                                .lineToLinearHeading(new Pose2d(-12, 38, Math.toRadians(270)))
-                                .lineToLinearHeading(new Pose2d(-56,56,Math.toRadians(0)))
-                                .back(5)
-                                .strafeLeft(5)
-                                .lineTo(new Vector2d(-60,35.5))
+                        drive.trajectorySequenceBuilder(new Pose2d(0, 0, 0))
+
+                                .splineToLinearHeading(new Pose2d(40,40,Math.toRadians(90)),Math.toRadians(90))
+                                .setReversed(false)
+                                .lineTo(new Vector2d(20,20))
+
                                 .build()
                 );
 
-        meepMeep.setBackground(MeepMeep.Background.FIELD_FREIGHTFRENZY_ADI_DARK)
+        mm.setBackground(MeepMeep.Background.FIELD_FREIGHTFRENZY_ADI_DARK)
                 .setDarkMode(true)
                 .setBackgroundAlpha(0.95f)
                 .addEntity(myBot)
