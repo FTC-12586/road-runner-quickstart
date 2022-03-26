@@ -31,13 +31,19 @@ public class RedWarehouseMeepMeep {
                             opmode, this section should be a pre-built Trajectory that is looped in Run()
                               */
                             .waitSeconds(1)
+                            .addDisplacementMarker(() ->{
+                                //subsystem movement in here
+                            })
                             .splineToSplineHeading(whEntryPos, Math.toRadians(0))
 
                             .forward(10)
                             // this is where we will pick up additional freight
+                            .addDisplacementMarker(() ->{
+                                //subsystem movement in here
+                            })
                             .back(10)
                             .setReversed(true)
-                            .splineToLinearHeading(dropOffPos, Math.toRadians(90))
+                            .splineToSplineHeading(dropOffPos, Math.toRadians(90))
                             .setReversed(false)
 
                             .build()

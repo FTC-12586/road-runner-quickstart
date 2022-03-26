@@ -19,6 +19,9 @@ public class TrajectoriesTest {
 
                                 .splineToLinearHeading(new Pose2d(40,40,Math.toRadians(90)),Math.toRadians(90))
                                 .setReversed(false)
+                                .addTemporalMarker(1,() ->{
+                                    //subsystem movement in here
+                                })
                                 .lineTo(new Vector2d(20,20))
 
                                 .build()
